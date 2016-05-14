@@ -1,0 +1,19 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Smoke : MonoBehaviour {
+
+	// Use this for initialization
+	void Start () {
+	
+	}
+	
+	// Update is called once per frame
+	void Update () {
+		Invoke("Destroy", 1.0f);
+	}
+	
+	void Destroy(){
+		Destroy(gameObject);
+	}
+}
