@@ -48,7 +48,6 @@ public class power_up_ball : MonoBehaviour {
 			} else if (gameObject.tag.Equals ("PowerUp_Ball_8")) {
 				GameObject bonusFromBall = Instantiate (bonus, new Vector3 (Random.Range (3.0f, 9.0f), Random.Range (17.0f, 7.0f), 0f), Quaternion.identity) as GameObject;
 			} else if (gameObject.tag.Equals ("PowerUp_Ball_9")) {
-				Debug.Log ("Ok działa");
 				stoneBall = true;
 				Ball.ballPower = 0;
 			} else if (gameObject.tag.Equals ("PowerUp_Ball_10")) {
