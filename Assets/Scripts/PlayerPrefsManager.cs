@@ -27,9 +27,9 @@ public class PlayerPrefsManager : MonoBehaviour {
 		
 		int temp;
 		
-		for(int i=1; i<=10; i++) //for top 5 highscores
+		for(int i=1; i<=10; i++) //for top 10 highscores
 		{
-			if(GetHighestScore(i)< score)     //if cuurent score is in top 5
+			if(GetHighestScore(i)< score)     //if cuurent score is in top 10
 			{
 				temp = GetHighestScore(i);     //store the old highscore in temp varible to shift it down 
 				PlayerPrefs.SetInt(HIGH_SCORES + i,score);     //store the currentscore to highscores
@@ -116,14 +116,14 @@ public class PlayerPrefsManager : MonoBehaviour {
 	}
 
 	public void DeleteUnlockedLevels(){
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i <= 20; i++) {
 			PlayerPrefs.DeleteKey("level_unlocked_" + i.ToString());
 			Application.LoadLevel("Options_Reset_Confirmation");
 		}
 	}
 
 	public void DeleteHighScores(){
-		for (int i = 1; i < 10; i++) {
+		for (int i = 1; i <= 10; i++) {
 			PlayerPrefs.DeleteKey("highest_score" + i.ToString());
 			Application.LoadLevel("Options_Reset_Confirmation");
 		}
