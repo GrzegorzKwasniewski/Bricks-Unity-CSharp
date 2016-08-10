@@ -22,8 +22,8 @@ public class LoseCollider : MonoBehaviour {
 		Ball.ballPower = 100;
 		}
 		
-		if(Ball.ballCount == 0){
-		Lives.lives--;
+		if (Ball.ballCount == 0){
+			Lives.lives--;
 		}
 		
 		if (Lives.lives == 0){

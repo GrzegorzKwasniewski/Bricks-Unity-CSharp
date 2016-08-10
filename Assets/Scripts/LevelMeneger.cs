@@ -3,7 +3,9 @@ using System.Collections;
 
 public class LevelMeneger : MonoBehaviour {
 
+	public GameObject summaryWinningCanvas;
 	public GameObject summaryCanvas;
+	public GameObject summaryDialog;
 	public GameObject unbreakable;
 	public GameObject unbreakable_collider;
 	public float loadNextLevel = 3.0f;
@@ -11,6 +13,7 @@ public class LevelMeneger : MonoBehaviour {
 	public static bool isTwoBalls;
 	public static bool isFireBall;
 	public int levelNumber;
+	public bool isLastLevel;
 
 	
 	void Start(){
@@ -24,9 +27,8 @@ public class LevelMeneger : MonoBehaviour {
 			Invoke ("SplashLoadNextLevel", loadNextLevel);
 		}
 		
-		if (Input.GetKeyDown(KeyCode.Escape))
-		{
-			Application.LoadLevel("Start");
+		if (Input.GetKeyDown(KeyCode.Escape)) {
+			Instantiate(summaryDialog, this.transform.position, Quaternion.identity);
 		}
 		
 		if (Brick.brickCount == 0){
@@ -63,9 +65,30 @@ public class LevelMeneger : MonoBehaviour {
 	public void BrickDestroyed() {
 		if (Brick.brickCount <= 0) {
 			loseCollider.collider2D.isTrigger = false;
-			Instantiate(summaryCanvas, this.transform.position, Quaternion.identity);
 			Instantiate(unbreakable, new Vector3(0.326f, -5.94f, 0f), Quaternion.identity);
 			Instantiate(unbreakable_collider, new Vector3(0f, -7.74f, 0f), Quaternion.identity);
+			
+			if (isLastLevel) {
+				PlayerPrefsManager.SetHighestScore(Score.scoreSum);
+				Instantiate(summaryWinningCanvas, this.transform.position, Quaternion.identity);
+			} else {
+				Instantiate(summaryCanvas, this.transform.position, Quaternion.identity);
+			}
+		}
+	}
+	
+	public void quitPlaying(bool quit) {
+		if (quit) {
+			Brick.brickCount = 0;
+			Score.scoreSum = 0;
+			LevelMeneger.isTwoBalls = false;
+			LevelMeneger.isFireBall = false;
+			Lives.lives = 5;
+			Application.LoadLevel("start");
+		} else {
+			GameObject dialog = GameObject.Find("CanvasDialog(Clone)");
+			DestroyImmediate(dialog, true);
+			//summaryDialog2.SetActive(false);
 		}
 	}
 	

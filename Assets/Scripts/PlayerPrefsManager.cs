@@ -12,16 +12,6 @@ public class PlayerPrefsManager : MonoBehaviour {
 	const string SOUND_EFFECTS = "sound_effects";
 	const string HIGH_SCORES = "highest_score";
 
-
-
-	//const string HIGHEST_SCORES = "highest_score";
-	
-	
-	void Awake(){
-
-		//GameObject.DontDestroyOnLoad(gameObject);
-
-	}
 	
 	public static void SetHighestScore(int score){
 		
@@ -33,8 +23,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 			{
 				temp = GetHighestScore(i);     //store the old highscore in temp varible to shift it down 
 				PlayerPrefs.SetInt(HIGH_SCORES + i,score);     //store the currentscore to highscores
-				if(i<10)                                        //do this for shifting scores down
-				{
+				if (i<10) {                                        //do this for shifting scores down
 					int j=i+1;
 					score = GetHighestScore(j); 
 					PlayerPrefs.SetInt(HIGH_SCORES + j,temp);    

@@ -19,10 +19,8 @@ public class Brick : MonoBehaviour {
 	private bool isBreakable;
 	
 	
-	// Use this for initialization
 	void Start () { 
 		isBreakable = (this.tag == "Breakable");
-		//Keep track of braleable bricks
 		if (isBreakable){
 			brickCount++;
 		}
@@ -43,10 +41,12 @@ public class Brick : MonoBehaviour {
 				Score.scoreSum += howMuchPoints;
 			} else if (Ball.ballPower == 0){
 			
-				} else { 
+			} else { 
+			
 				if (PlayerPrefsManager.GetSoundEffects() == 1f) {
 					AudioSource.PlayClipAtPoint(crack, this.transform.position, 0.3f);
-				}				
+				}	
+							
 				HandleHits();
 			}
 		}
