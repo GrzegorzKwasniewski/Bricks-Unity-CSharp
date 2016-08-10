@@ -14,6 +14,7 @@ public class LevelMeneger : MonoBehaviour {
 	public static bool isFireBall;
 	public int levelNumber;
 	public bool isLastLevel;
+	public bool levelForPlaying;
 
 	
 	void Start(){
@@ -28,7 +29,11 @@ public class LevelMeneger : MonoBehaviour {
 		}
 		
 		if (Input.GetKeyDown(KeyCode.Escape)) {
-			Instantiate(summaryDialog, this.transform.position, Quaternion.identity);
+			if (levelForPlaying) {
+				Instantiate(summaryDialog, this.transform.position, Quaternion.identity);
+			} else {
+				Application.LoadLevel("Start");
+			}
 		}
 		
 		if (Brick.brickCount == 0){
