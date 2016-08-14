@@ -15,6 +15,7 @@ public class LevelMeneger : MonoBehaviour {
 	public int levelNumber;
 	public bool isLastLevel;
 	public bool levelForPlaying;
+	public bool startScene;
 
 	
 	void Start(){
@@ -31,6 +32,8 @@ public class LevelMeneger : MonoBehaviour {
 		if (Input.GetKeyDown(KeyCode.Escape)) {
 			if (levelForPlaying) {
 				Instantiate(summaryDialog, this.transform.position, Quaternion.identity);
+			} else if (startScene) {
+				Application.Quit();
 			} else {
 				Application.LoadLevel("Start");
 			}
