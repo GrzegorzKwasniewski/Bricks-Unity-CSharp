@@ -12,8 +12,16 @@ public class BallBonus : MonoBehaviour {
 	private SimpleTouchAreaButton areaButton;
 	private float ballSpeedFromOptions;	
 	private Vector3 paddleToBallVector = new Vector3(0, 0.6f, 0);
+	private AudioSource audio;
 	
 	void Start () {
+	
+		audio = GetComponent<AudioSource>();
+		
+		if (PlayerPrefsManager.GetSoundEffects() == 0f) {
+			audio.mute = true;
+		}
+		
 		ballSpeedFromOptions = PlayerPrefsManager.GetBallSpeed ();
 		
 		if (ballSpeedFromOptions == 1) {
