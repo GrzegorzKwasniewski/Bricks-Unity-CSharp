@@ -89,9 +89,6 @@ public class Paddle_Select : MonoBehaviour {
 			paddleSelNum = 19;
 			break;
 
-		}
-		
-		
+		}	
 	}
-	
 }

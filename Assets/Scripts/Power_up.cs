@@ -8,7 +8,8 @@ public class Power_up : MonoBehaviour {
 	public GameObject powerUp;
 	public Texture2D texture;
 	
-	void OnCollisionEnter2D(Collision2D collision){
+	void OnCollisionEnter2D(Collision2D collision) {
+	
 		if (PlayerPrefsManager.GetSoundEffects() == 1f) {
 			AudioSource.PlayClipAtPoint(crack, this.transform.position);
 		}		
@@ -17,7 +18,8 @@ public class Power_up : MonoBehaviour {
 		Destroy(gameObject);
 	}
 	
-	void OnTriggerEnter2D(Collider2D collider){
+	void OnTriggerEnter2D(Collider2D collider) {
+	
 		if (PlayerPrefsManager.GetSoundEffects() == 1f) {
 			AudioSource.PlayClipAtPoint(crack, this.transform.position, 0.3f);
 		}		
@@ -26,7 +28,7 @@ public class Power_up : MonoBehaviour {
 		Destroy(gameObject);
 	}
 	
-	void PuffSmoke(){
+	void PuffSmoke() {
 		GameObject smokePuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
 		if (texture.name == "stone_g_08"){
 			smokePuff.particleSystem.startColor = new Color(0.2f, 0.7f, 0.3f, 0.8f);
@@ -41,8 +43,7 @@ public class Power_up : MonoBehaviour {
 		} else if (texture.name == "stone_14"){
 			smokePuff.particleSystem.startColor = new Color(0.7f, 0.45f, 0.85f, 0.8f);
 		} else {
-			smokePuff.particleSystem.startColor = gameObject.GetComponent<SpriteRenderer>().color; //pobiera z obiektu komponent SpriteRenderer
-			// i pobiera z niego kolor
+			smokePuff.particleSystem.startColor = gameObject.GetComponent<SpriteRenderer>().color;		
 		}
 	}
 }

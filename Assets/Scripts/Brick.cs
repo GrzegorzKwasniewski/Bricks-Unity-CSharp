@@ -28,9 +28,12 @@ public class Brick : MonoBehaviour {
 		levelMeneger = GameObject.FindObjectOfType<LevelMeneger>();
 	}
 	
-	void OnCollisionEnter2D(Collision2D collision){
-		if (isBreakable){
+	void OnCollisionEnter2D(Collision2D collision) {
+	
+		if (isBreakable) {
+		
 			if (Ball.ballPower >= 200){
+			
 				if (PlayerPrefsManager.GetSoundEffects() == 1f) {
 					AudioSource.PlayClipAtPoint(crack, this.transform.position, 0.3f);
 				}
@@ -39,20 +42,18 @@ public class Brick : MonoBehaviour {
 				PuffSmoke();
 				Destroy(gameObject);
 				Score.scoreSum += howMuchPoints;
-			} else if (Ball.ballPower == 0){
-			
 			} else { 
 			
 				if (PlayerPrefsManager.GetSoundEffects() == 1f) {
 					AudioSource.PlayClipAtPoint(crack, this.transform.position, 0.3f);
 				}	
-							
 				HandleHits();
 			}
 		}
 	}
 		
-	void OnTriggerEnter2D(Collider2D collider){
+	void OnTriggerEnter2D(Collider2D collider) {
+	
 		if (isBreakable){
 			AudioSource.PlayClipAtPoint(crack, this.transform.position);
 			brickCount--;
@@ -63,10 +64,11 @@ public class Brick : MonoBehaviour {
 		}
 	}
 	
-	void HandleHits(){
+	void HandleHits() {
 		timesHit++;
-		maxHits = hitSprites.Length + 1;	 
-		if (timesHit >= maxHits){ 
+		maxHits = hitSprites.Length + 1;
+			 
+		if (timesHit >= maxHits) { 
 			brickCount--;
 			levelMeneger.BrickDestroyed();
 			PuffSmoke();		
@@ -77,8 +79,9 @@ public class Brick : MonoBehaviour {
 		}
 	}
 	
-	void PuffSmoke(){
+	void PuffSmoke() {
 		GameObject smokePuff = Instantiate(smoke, this.transform.position, Quaternion.identity) as GameObject;
+		
 		if (texture.name == "1"){
 			smokePuff.particleSystem.startColor = new Color(0.9f, 0.5f, 0.2f, 0.8f);
 		} else if (texture.name == "2"){
@@ -102,24 +105,17 @@ public class Brick : MonoBehaviour {
 		} else if (texture.name == "stone_01"){
 			smokePuff.particleSystem.startColor = new Color(0.55f, 0.55f, 0.55f, 0.8f);
 		} else {
-		smokePuff.particleSystem.startColor = gameObject.GetComponent<SpriteRenderer>().color; //pobiera z obiektu komponent SpriteRenderer
-		// i pobiera z niego kolor
-		}
+		smokePuff.particleSystem.startColor = gameObject.GetComponent<SpriteRenderer>().color;		}
 	}
 	
-	void LoadSprites(){
+	void LoadSprites() {
+	
 		int spriteIndex = timesHit - 1;
-		if (hitSprites[spriteIndex] != null){ //jeżeli sprite z danym indexem istnieje
+		
+		if (hitSprites[spriteIndex] != null){
 		this.GetComponent<SpriteRenderer>().sprite = hitSprites[spriteIndex];
 		} else {
-			Debug.LogError("There is no sprite"); //sprawdza, czy pod danym indexem znjadziemy sprita
+			Debug.LogError("There is no sprite");
 		}
-	}
-	
-	
-	// Update is called once per frame
-	void Update () {
-		
-	
 	}
 }

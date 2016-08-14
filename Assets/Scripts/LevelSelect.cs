@@ -8,7 +8,8 @@ public class LevelSelect : MonoBehaviour {
 	public Text level;
 	public Button button;
 
-	void Awake(){
+	void Awake() {
+	
 		if (PlayerPrefsManager.IsLevelUnlocked(levelNumber)){
 			level.text = levelNumber.ToString();
 			button.interactable = true;
@@ -16,15 +17,5 @@ public class LevelSelect : MonoBehaviour {
 			level.text = "-";
 			button.interactable = false;
 		}
-	}
-	
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

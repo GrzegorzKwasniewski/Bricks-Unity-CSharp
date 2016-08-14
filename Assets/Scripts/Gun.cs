@@ -4,7 +4,7 @@ using System.Collections;
 public class Gun : MonoBehaviour {
 
 	public GameObject shoot;
-	public float shootSpeed = 10.0f; // how fast projectiles go i positiv Y direction
+	public float shootSpeed = 10.0f;
 	public float fireRate = 2.0f;
 	public Paddle paddle;
 	
@@ -13,7 +13,6 @@ public class Gun : MonoBehaviour {
 	private float paddlePosY;
 	Vector3 paddleToGunVector;
 	
-	// Use this for initialization
 	void Start () {
 		paddle = GameObject.FindObjectOfType<Paddle>();
 		paddlePosX = - 0.8f;
@@ -21,9 +20,9 @@ public class Gun : MonoBehaviour {
 		paddleToGunVector = new Vector3(paddlePosX, paddlePosY, 0);
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		this.transform.position = paddle.transform.position + paddleToGunVector;
+		
 		if (Time.time > nextFire){
 			nextFire = Time.time + fireRate; 
 			float posY = this.transform.position.y + 0.7f;

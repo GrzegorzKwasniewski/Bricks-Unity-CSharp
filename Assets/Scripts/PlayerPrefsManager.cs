@@ -11,19 +11,17 @@ public class PlayerPrefsManager : MonoBehaviour {
 	const string BALL_SPEED = "ball_speed";
 	const string SOUND_EFFECTS = "sound_effects";
 	const string HIGH_SCORES = "highest_score";
-
 	
 	public static void SetHighestScore(int score){
-		
 		int temp;
 		
-		for(int i=1; i<=10; i++) //for top 10 highscores
-		{
-			if(GetHighestScore(i)< score)     //if cuurent score is in top 10
-			{
-				temp = GetHighestScore(i);     //store the old highscore in temp varible to shift it down 
-				PlayerPrefs.SetInt(HIGH_SCORES + i,score);     //store the currentscore to highscores
-				if (i<10) {                                        //do this for shifting scores down
+		for(int i=1; i<=10; i++) {
+		
+			if(GetHighestScore(i)< score) {
+				temp = GetHighestScore(i); 
+				PlayerPrefs.SetInt(HIGH_SCORES + i,score);
+				
+				if (i<10) {
 					int j=i+1;
 					score = GetHighestScore(j); 
 					PlayerPrefs.SetInt(HIGH_SCORES + j,temp);    
@@ -32,11 +30,12 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 	
-	public static int GetHighestScore(int position){
+	public static int GetHighestScore(int position) {
 		return PlayerPrefs.GetInt(HIGH_SCORES + position);
 	}
 	
-	public static void SetMasterVolume (float volume){
+	public static void SetMasterVolume (float volume) {
+	
 		if (volume >= 0f && volume <= 1f){
 			PlayerPrefs.SetFloat (MASTER_VOLUME_KEY, volume);
 		} else {
@@ -44,7 +43,7 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 	
-	public static float GetMasterVolume(){
+	public static float GetMasterVolume() {
 		return PlayerPrefs.GetFloat(MASTER_VOLUME_KEY);
 	}
 
@@ -56,11 +55,12 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 
-	public static float GetBallSpeed(){
+	public static float GetBallSpeed() {
 		return PlayerPrefs.GetFloat(BALL_SPEED);
 	}
 
-	public static void SetSoundEffects (float isOn){
+	public static void SetSoundEffects (float isOn) {
+	
 		if (isOn >= 0f && isOn <= 1f){
 			PlayerPrefs.SetFloat (SOUND_EFFECTS, isOn);
 		} else {
@@ -68,11 +68,12 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 	
-	public static float GetSoundEffects(){
+	public static float GetSoundEffects() {
 		return PlayerPrefs.GetFloat(SOUND_EFFECTS);
 	}
 	
-	public static void UnlockedLevel(int level){
+	public static void UnlockedLevel(int level) {
+	
 		if (level <= Application.levelCount - 1){
 			PlayerPrefs.SetInt(LEVEL_KEY + level.ToString(), 1);
 		} else {
@@ -80,11 +81,11 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 	
-	public static bool IsLevelUnlocked(int level){
+	public static bool IsLevelUnlocked(int level) {
 		int levelValue = PlayerPrefs.GetInt(LEVEL_KEY + level.ToString());
 		bool isLevelUnlocked = (levelValue == 1);
 		
-		if (level > Application.levelCount - 1){
+		if (level > Application.levelCount - 1) {
 			Debug.LogError("Level number is out of range of bulid");
 			return false;
 		} else {
@@ -92,26 +93,29 @@ public class PlayerPrefsManager : MonoBehaviour {
 		}
 	}
 	
-	public static void SetDifficultyValue (float difficulty){
-		if (difficulty >= 0f && difficulty <= 1f){
+	public static void SetDifficultyValue (float difficulty) {
+	
+		if (difficulty >= 0f && difficulty <= 1f) {
 			PlayerPrefs.SetFloat (DIFFICULTY_KEY, difficulty);
 		} else {
 			Debug.LogError("Difficulty out of range");
 		}
 	}
 	
-	public static float GetDifficultyValue(){
+	public static float GetDifficultyValue() {
 		return PlayerPrefs.GetFloat(DIFFICULTY_KEY);
 	}
 
-	public void DeleteUnlockedLevels(){
+	public void DeleteUnlockedLevels() {
+	
 		for (int i = 1; i <= 20; i++) {
 			PlayerPrefs.DeleteKey("level_unlocked_" + i.ToString());
 			Application.LoadLevel("Options_Reset_Confirmation");
 		}
 	}
 
-	public void DeleteHighScores(){
+	public void DeleteHighScores() {
+	
 		for (int i = 1; i <= 10; i++) {
 			PlayerPrefs.DeleteKey("highest_score" + i.ToString());
 			Application.LoadLevel("Options_Reset_Confirmation");

@@ -14,6 +14,7 @@ public class SimpleTouchAreaButton : MonoBehaviour, IPointerDownHandler, IPointe
 	}
 	
 	public void OnPointerDown (PointerEventData data) {
+	
 		if (!touched) {
 			touched = true;
 			pointerID = data.pointerId;
@@ -22,6 +23,7 @@ public class SimpleTouchAreaButton : MonoBehaviour, IPointerDownHandler, IPointe
 	}
 	
 	public void OnPointerUp (PointerEventData data) {
+	
 		if (data.pointerId == pointerID) {
 			canFire = false;
 			touched = false;

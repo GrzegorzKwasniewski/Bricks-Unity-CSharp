@@ -7,7 +7,8 @@ public class Music_Player : MonoBehaviour {
 
 	private AudioSource levelMusic;
 	
-	void Awake (){
+	void Awake () {
+	
 		if (instance != null){
 			GameObject.Destroy(gameObject);
 			
@@ -15,17 +16,12 @@ public class Music_Player : MonoBehaviour {
 			instance = this;
 			GameObject.DontDestroyOnLoad(gameObject);
 		}
-		
 		levelMusic = GetComponent<AudioSource>();
-		levelMusic.volume = 0f;
-		
+		levelMusic.volume = 0f;	
 	}
 	
-	// Use this for initialization
 	void Start () {
-		//levelMusic = GetComponent<AudioSource>();
 		levelMusic.volume = PlayerPrefsManager.GetMasterVolume ();
-
 	}
 
 	public void ChangeVolume(float volume){

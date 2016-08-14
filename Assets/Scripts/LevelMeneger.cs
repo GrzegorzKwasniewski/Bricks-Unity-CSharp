@@ -25,6 +25,7 @@ public class LevelMeneger : MonoBehaviour {
 	}
 	
 	void Update(){
+	
 		if (Application.loadedLevel == 0){
 			Invoke ("SplashLoadNextLevel", loadNextLevel);
 		}
@@ -71,6 +72,7 @@ public class LevelMeneger : MonoBehaviour {
 	}
 	
 	public void BrickDestroyed() {
+	
 		if (Brick.brickCount <= 0) {
 			loseCollider.collider2D.isTrigger = false;
 			Instantiate(unbreakable, new Vector3(0.326f, -5.94f, 0f), Quaternion.identity);
@@ -86,6 +88,7 @@ public class LevelMeneger : MonoBehaviour {
 	}
 	
 	public void quitPlaying(bool quit) {
+	
 		if (quit) {
 			Brick.brickCount = 0;
 			Score.scoreSum = 0;
@@ -96,7 +99,6 @@ public class LevelMeneger : MonoBehaviour {
 		} else {
 			GameObject dialog = GameObject.Find("CanvasDialog(Clone)");
 			DestroyImmediate(dialog, true);
-			//summaryDialog2.SetActive(false);
 		}
 	}
 	

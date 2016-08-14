@@ -88,9 +88,6 @@ public class Ball_Select : MonoBehaviour {
 			case 19:
 			ballSelNum = 19;
 			break;
-		}
-		
-		
+		}		
 	}
-	
 }
